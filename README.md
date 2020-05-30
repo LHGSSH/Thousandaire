@@ -58,33 +58,22 @@ The image below links to a [video](https://youtu.be/-aqURst9ROM) of a sample exe
 You will need to make sure that you include the following models. In the video, I have separated the Models into their own Models package. Note that there is some room for interpretation, but a general code outline is given below.
  
 ### The Game Class
-![UML of Game class](http://www.plantuml.com/plantuml/png/NOtH2i8m34NV-nLvd8pzWSX4K0GH17yWha4ARIfDgXFntzM73DpRuPxatbuKYzOKtH1H17QO25wkMvU2pqCGNPugYORCAqY6uhh02cbJIo5MY_ViQNJjhw9PkFQUWmVqtdHZ04mFu-_T55z9PutDJ1zf_7ENd2CXGv1jO8ocflLRoGEHF-VPuzlrnBwc-040)
+![UML of Game class](http://www.plantuml.com/plantuml/png/RSv1gi8m4CRnVKunovRsNQ2hFXTAGGIX5mZ9W85aOZCJB8Xtjq9hnRh-CT_yMnQT90UlZDVCSD01uQx-XemiBX8tS7Gie2gJKqAIymmTMHmRw4Wsz4zym_JRUXnb5i9nFGanqmAlXg9KbRPsyMBulgzXsBwhmLoYCpXNrw3NtMdGyTwHzk_Hie5TZ1urgUgQea6qVJnzP4qL3zKYsHpy4m00)
 
-This class is responsible for storing information pertaining to the game. In addition to a constructor, it has the following methods:
-* `addQuestion (Question newQuestion)`
-	* Adds a new question to the arraylist of questions.
-* `getCurrentQuestion ()`
-	* Get the question for the current round.
-* `getNextQuestion ()`
-	* Gets the question for the upcoming round.
+This class is responsible for storing information pertaining to the game in a ViewModel. Each property should provide a getter, but setters should be private.
+
+In addition to a constructor, it has the following methods:
+* `addQuestion (questionText, questionAnswer, choices, amount)`
+	* Adds a new question to the list of questions. Should be called by your MainActivity.
 * `isFinalQuestion ()`
 	* Returns whether there are any questions that will follow this one.
 * `proceedToNextQuestion ()`
- * Updates the game to the next question.
+	* Updates the game to the next question.
 
 ### The Question Class
-![UML of Question class](http://www.plantuml.com/plantuml/png/LOwx2W8n44NxV4NAbTL_MB5AkM8d5Y4PD907xanG4FzT9myVvJaN3dT2qWlbu8Nn6b7E6P1SYl8XDYwI30UuqnvGsSRRY3TO2XnFCkmkoHbG5liSKeuanjuPs5uRS4lPjMIdIwSIbqmFjRbqLc9aE0FLxl0Lyr_pPwW7c-8qoy_DjtsA2QBDmRy0)
+![UML of Question class](http://www.plantuml.com/plantuml/png/SoWkIImgAStDuKhEIImkLWWiJIqkoSpFKwZcqeQnDGgXZ93KYXBF52i5pxmI7ON4lEBor28uDpaZFpCvrJEbs4h19xCO99-RNvfN0fRLvAhbSaZDIm5Q0m00)
 
-This class is responsible for storing information pertaining to a specific question in the game. Note that integers are used instead of strings for holding questions and answers. This is a result of strings being referenced by Ids. In addition to a parameterized constructor, you need the following methods:
-
-* `getAmount ()`
-	* Returns the amount in dollars that answering this question is worth.
-* `getQuestionTextId ()`
-	* Returns the Id for the string with the question's text.
-* `getAnswerId ()`
-	* Returns the Id for the correct answer.
-* `getChoiceIds()`
-	* Gets the Ids for the strings to the answer choices that the player can choose from.
+This class is responsible for storing information pertaining to a specific question in the game. It should be a Data class. Note that integers are used instead of strings for holding questions and answers. This is a result of strings being referenced by Ids.
 
 ## Additional Requirements:
 
@@ -106,9 +95,9 @@ Your application must function as described below:
 
 ## Submission Instructions:
 
-1. All code must be added and committed to your local git repository.
+1. All code must be added and committed to your local git repository *as done in activity one or it may not be graded*.
 2. All code must be pushed to the GitHub repository created when you "accepted" the assignment.
    1. After pushing, visit the web URL of your repository to verify that your code is there.
       If you don't see the code there, then we can't see it either.
-3. Your code must compile and run in a Nexus 5X emulator with API 24 or it might not be graded.
+3. Your code must compile and run in a Pixel 2 emulator *as shown in the lectures or it might not be graded*.
    1. If your program will not compile, the graders will not be responsible for trying to test it.
