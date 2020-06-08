@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimary">#18CB9E</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+    <color name="textColor">#FFFFFF</color>
+    <color name="mainActivityColor">#00946F</color>
+    <color name="proceedActivityColor">#13D84D</color>
+    <color name="gameOverActivityColor">#E81500</color>
+    <color name="scoreActivityColor">#197AE3</color>
 </resources>
