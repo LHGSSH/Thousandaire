@@ -1,3 +1,39 @@
 <resources>
     <string name="app_name">Thousandaire</string>
+
+    <string name="mickey_question">What is the name of Mickey Mouse\'s dog?</string>
+    <string name="mickey_answer1">Pluto</string>
+    <string name="mickey_answer2">Goofy</string>
+    <string name="mickey_answer3">Minnie</string>
+    <string name="mickey_answer4">Daisy</string>
+
+    <string name="solar_question">What is the largest planet in our solar system?</string>
+    <string name="solar_answer1">Earth</string>
+    <string name="solar_answer2">Mars</string>
+    <string name="solar_answer3">Jupiter</string>
+    <string name="solar_answer4">Venus</string>
+
+    <string name="gilligan_question">How many people were originally shipwrecked on Gilligan\'s Island?</string>
+    <string name="gilligan_answer1">2</string>
+    <string name="gilligan_answer2">6</string>
+    <string name="gilligan_answer3">7</string>
+    <string name="gilligan_answer4">8</string>
+
+    <string name="periodic_question">Which of these is not an abbreviation for an element on the periodic table?</string>
+    <string name="periodic_answer1">Tc</string>
+    <string name="periodic_answer2">O</string>
+    <string name="periodic_answer3">Fe</string>
+    <string name="periodic_answer4">E</string>
+
+    <string name="valletta_question">The city Valletta is the capital of which European country?</string>
+    <string name="valletta_answer1">Croatia</string>
+    <string name="valletta_answer2">Latvia</string>
+    <string name="valletta_answer3">Estonia</string>
+    <string name="valletta_answer4">Malta</string>
+
+    <string name="sun_question">Approximately how many million miles is the Earth from the Sun?</string>
+    <string name="sun_answer1">1</string>
+    <string name="sun_answer2">10</string>
+    <string name="sun_answer3">100</string>
+    <string name="sun_answer4">200</string>
 </resources>
