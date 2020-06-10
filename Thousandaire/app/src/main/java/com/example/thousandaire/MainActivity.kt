@@ -1,7 +1,9 @@
 package com.example.thousandaire
 
+import android.nfc.Tag
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import com.example.thousandaire.models.Game
@@ -24,6 +26,51 @@ class MainActivity : AppCompatActivity() {
         answerButton2 = findViewById(R.id.answer_button_2)
         answerButton3 = findViewById(R.id.answer_button_3)
         answerButton4 = findViewById(R.id.answer_button_4)
+
+        game = Game()
+        initializeGame(game)
+
+        questionTextView.setText(game.currentQuestionText)
+        answerButton1.setText(game.currentQuestionChoices[0])
+        answerButton2.setText(game.currentQuestionChoices[1])
+        answerButton3.setText(game.currentQuestionChoices[2])
+        answerButton4.setText(game.currentQuestionChoices[3])
+
+        answerButton1.setOnClickListener {
+            if (isAnswerCorrect(game, answerButton1)) {
+                //send user to proceed screen
+            }
+            else {
+                //send user to game over screen
+            }
+        }
+
+        answerButton2.setOnClickListener {
+            if (isAnswerCorrect(game, answerButton2)) {
+                //send user to proceed screen
+            }
+            else {
+                //send user to game over screen
+            }
+        }
+
+        answerButton3.setOnClickListener {
+            if (isAnswerCorrect(game, answerButton3)) {
+                //send user to proceed screen
+            }
+            else {
+                //send user to game over screen
+            }
+        }
+
+        answerButton4.setOnClickListener {
+            if (isAnswerCorrect(game, answerButton4)) {
+                //send user to proceed screen
+            }
+            else {
+                //send user to game over screen
+            }
+        }
     }
 
     fun initializeGame(game: Game) {
@@ -58,5 +105,14 @@ class MainActivity : AppCompatActivity() {
         choices = mutableListOf<Int>(R.string.sun_answer1, R.string.sun_answer2,
             R.string.sun_answer3, R.string.sun_answer4)
         game.addQuestion(R.string.sun_question, R.string.sun_answer3, choices, 1000)
+    }
+
+    fun isAnswerCorrect(game: Game, answerButton: Button): Boolean {
+        var answer = getString(game.currentQuestionAnswer)
+
+        if (answerButton.text.equals(answer)) {
+            return true
+        }
+        return false
     }
 }
