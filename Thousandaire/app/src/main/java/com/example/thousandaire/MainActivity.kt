@@ -1,5 +1,6 @@
 package com.example.thousandaire
 
+import android.content.Intent
 import android.nfc.Tag
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -41,7 +42,7 @@ class MainActivity : AppCompatActivity() {
                 //send user to proceed screen
             }
             else {
-                //send user to game over screen
+                gameOver()
             }
         }
 
@@ -50,7 +51,7 @@ class MainActivity : AppCompatActivity() {
                 //send user to proceed screen
             }
             else {
-                //send user to game over screen
+                gameOver()
             }
         }
 
@@ -59,7 +60,7 @@ class MainActivity : AppCompatActivity() {
                 //send user to proceed screen
             }
             else {
-                //send user to game over screen
+                gameOver()
             }
         }
 
@@ -68,7 +69,7 @@ class MainActivity : AppCompatActivity() {
                 //send user to proceed screen
             }
             else {
-                //send user to game over screen
+                gameOver()
             }
         }
     }
@@ -114,5 +115,10 @@ class MainActivity : AppCompatActivity() {
             return true
         }
         return false
+    }
+
+    fun gameOver() {
+        val intent = Intent(this, GameOverActivity::class.java)
+        startActivity(intent)
     }
 }
