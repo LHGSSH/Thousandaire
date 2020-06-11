@@ -2,6 +2,7 @@
     <string name="app_name">Thousandaire</string>
     <string name="game_over_text">I\'m sorry! That is not the correct answer!</string>
     <string name="quit_game">Quit game</string>
+    <string name="go_on">Go on</string>
 
     <string name="mickey_question">What is the name of Mickey Mouse\'s dog?</string>
     <string name="mickey_answer1">Pluto</string>

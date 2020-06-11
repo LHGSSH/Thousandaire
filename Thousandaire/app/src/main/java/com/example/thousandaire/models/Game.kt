@@ -8,10 +8,13 @@ class Game() {
         private set
     var currentQuestionText: Int = 0
         private set
+    var currentQuestionAmount: Int = 0
+        private set
     var nextQuestionAmount: Int = 0
         private set
     var currentQuestionChoices: MutableList<Int> = mutableListOf()
         private set
+    var didUserGoOn: Boolean = false
 
     fun addQuestion(questionText: Int, questionAnswer: Int, choices: MutableList<Int>, amount: Int) {
         var newQuestion = Question(questionText, questionAnswer, choices, amount)
@@ -22,6 +25,7 @@ class Game() {
             currentQuestionAnswer = questions[currentQuestionIndex].answerId
             currentQuestionText = questions[currentQuestionIndex].questionTextId
             currentQuestionChoices = questions[currentQuestionIndex].choiceIds
+            currentQuestionAmount = questions[currentQuestionIndex].amount
         }
         //If there is another question, set the next question amount
         nextQuestionAmount =
@@ -42,6 +46,7 @@ class Game() {
 
         currentQuestionAnswer = questions[currentQuestionIndex].answerId
         currentQuestionText = questions[currentQuestionIndex].questionTextId
+        currentQuestionAmount = questions[currentQuestionIndex].amount
         nextQuestionAmount =
             if (!isFinalQuestion()) {
                 questions[currentQuestionIndex + 1].amount

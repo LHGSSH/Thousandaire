@@ -2,16 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:gravity="center"
     android:orientation="vertical"
     android:background="@color/proceedActivityColor">
 
     <TextView
+        android:id="@+id/proceed_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="24dp"
         android:gravity="center"
-        android:text="text"
+        tools:text="proceed"
         android:textSize="20sp"
         android:textColor="@color/textColor"/>
 
@@ -21,14 +23,16 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/go_on_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="response1" />
+            android:text="@string/go_on" />
 
         <Button
+            android:id="@+id/quit_game_button_proceed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="response2" />
+            android:text="@string/quit_game" />
 
     </LinearLayout>
 

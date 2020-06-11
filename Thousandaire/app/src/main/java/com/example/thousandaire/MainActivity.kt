@@ -1,5 +1,6 @@
 package com.example.thousandaire
 
+import android.app.Activity
 import android.content.Intent
 import android.nfc.Tag
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +11,8 @@ import android.widget.TextView
 import com.example.thousandaire.models.Game
 
 class MainActivity : AppCompatActivity() {
+    private val REQUEST_CODE_GO_ON = 0
+
     private lateinit var game: Game
 
     private lateinit var questionTextView: TextView
@@ -22,24 +25,23 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        game = Game()
+        initializeGame(game)
+
         questionTextView = findViewById(R.id.question_text_view)
         answerButton1 = findViewById(R.id.answer_button_1)
         answerButton2 = findViewById(R.id.answer_button_2)
         answerButton3 = findViewById(R.id.answer_button_3)
         answerButton4 = findViewById(R.id.answer_button_4)
 
-        game = Game()
-        initializeGame(game)
-
-        questionTextView.setText(game.currentQuestionText)
-        answerButton1.setText(game.currentQuestionChoices[0])
-        answerButton2.setText(game.currentQuestionChoices[1])
-        answerButton3.setText(game.currentQuestionChoices[2])
-        answerButton4.setText(game.currentQuestionChoices[3])
+        setText()
 
         answerButton1.setOnClickListener {
             if (isAnswerCorrect(game, answerButton1)) {
-                //send user to proceed screen
+                proceed()
+            }
+            else if(isAnswerCorrect(game, answerButton1) && game.isFinalQuestion()) {
+                //send user to score screen
             }
             else {
                 gameOver()
@@ -48,7 +50,10 @@ class MainActivity : AppCompatActivity() {
 
         answerButton2.setOnClickListener {
             if (isAnswerCorrect(game, answerButton2)) {
-                //send user to proceed screen
+                proceed()
+            }
+            else if(isAnswerCorrect(game, answerButton2) && game.isFinalQuestion()) {
+                //send user to score screen
             }
             else {
                 gameOver()
@@ -57,7 +62,10 @@ class MainActivity : AppCompatActivity() {
 
         answerButton3.setOnClickListener {
             if (isAnswerCorrect(game, answerButton3)) {
-                //send user to proceed screen
+                proceed()
+            }
+            else if(isAnswerCorrect(game, answerButton3) && game.isFinalQuestion()) {
+                //send user to score screen
             }
             else {
                 gameOver()
@@ -66,7 +74,10 @@ class MainActivity : AppCompatActivity() {
 
         answerButton4.setOnClickListener {
             if (isAnswerCorrect(game, answerButton4)) {
-                //send user to proceed screen
+                proceed()
+            }
+            else if(isAnswerCorrect(game, answerButton4) && game.isFinalQuestion()) {
+                //send user to score screen
             }
             else {
                 gameOver()
@@ -108,6 +119,14 @@ class MainActivity : AppCompatActivity() {
         game.addQuestion(R.string.sun_question, R.string.sun_answer3, choices, 1000)
     }
 
+    fun setText() {
+        questionTextView.setText(game.currentQuestionText)
+        answerButton1.setText(game.currentQuestionChoices[0])
+        answerButton2.setText(game.currentQuestionChoices[1])
+        answerButton3.setText(game.currentQuestionChoices[2])
+        answerButton4.setText(game.currentQuestionChoices[3])
+    }
+
     fun isAnswerCorrect(game: Game, answerButton: Button): Boolean {
         var answer = getString(game.currentQuestionAnswer)
 
@@ -120,5 +139,31 @@ class MainActivity : AppCompatActivity() {
     fun gameOver() {
         val intent = Intent(this, GameOverActivity::class.java)
         startActivity(intent)
+    }
+
+    override fun onActivityResult(requestCode: Int,
+                                  resultCode: Int,
+                                  data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode != Activity.RESULT_OK) {
+            return
+        }
+
+        if (requestCode == REQUEST_CODE_GO_ON) {
+            game.didUserGoOn =
+                data?.getBooleanExtra(EXTRA_GO_ON, false) ?: false
+        }
+    }
+
+    fun proceed() {
+        val intent = ProceedActivity.newIntent(this@MainActivity,
+            game.currentQuestionAmount, game.nextQuestionAmount)
+        startActivityForResult(intent, REQUEST_CODE_GO_ON)
+        if (game.didUserGoOn) {
+            game.proceedToNextQuestion()
+            setText()
+            game.didUserGoOn = false
+        }
     }
 }
