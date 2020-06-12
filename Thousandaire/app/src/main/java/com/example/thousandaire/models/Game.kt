@@ -27,18 +27,18 @@ class Game() {
             currentQuestionChoices = questions[currentQuestionIndex].choiceIds
             currentQuestionAmount = questions[currentQuestionIndex].amount
         }
-        //If there is another question, set the next question amount
+        //If it's the final question, set the next amount to 0
         nextQuestionAmount =
-            if (!isFinalQuestion()) {
-                questions[currentQuestionIndex + 1].amount
+            if (isFinalQuestion()) {
+                0
             }
             else {
-                0
+                questions[currentQuestionIndex + 1].amount
             }
     }
     
     fun isFinalQuestion(): Boolean {
-        return currentQuestionIndex == (questions.size - 1)
+        return currentQuestionIndex == questions.lastIndex
     }
 
     fun proceedToNextQuestion() {

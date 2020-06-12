@@ -12,6 +12,7 @@ import com.example.thousandaire.models.Game
 
 class MainActivity : AppCompatActivity() {
     private val REQUEST_CODE_GO_ON = 0
+    private val REQUEST_CODE_PLAY_OVER = 0
 
     private lateinit var game: Game
 
@@ -38,10 +39,12 @@ class MainActivity : AppCompatActivity() {
 
         answerButton1.setOnClickListener {
             if (isAnswerCorrect(game, answerButton1)) {
-                proceed()
-            }
-            else if(isAnswerCorrect(game, answerButton1) && game.isFinalQuestion()) {
-                //send user to score screen
+                if (game.isFinalQuestion()) {
+                    score()
+                }
+                else {
+                    proceed()
+                }
             }
             else {
                 gameOver()
@@ -50,10 +53,12 @@ class MainActivity : AppCompatActivity() {
 
         answerButton2.setOnClickListener {
             if (isAnswerCorrect(game, answerButton2)) {
-                proceed()
-            }
-            else if(isAnswerCorrect(game, answerButton2) && game.isFinalQuestion()) {
-                //send user to score screen
+                if (game.isFinalQuestion()) {
+                    score()
+                }
+                else {
+                    proceed()
+                }
             }
             else {
                 gameOver()
@@ -62,10 +67,12 @@ class MainActivity : AppCompatActivity() {
 
         answerButton3.setOnClickListener {
             if (isAnswerCorrect(game, answerButton3)) {
-                proceed()
-            }
-            else if(isAnswerCorrect(game, answerButton3) && game.isFinalQuestion()) {
-                //send user to score screen
+                if (game.isFinalQuestion()) {
+                    score()
+                }
+                else {
+                    proceed()
+                }
             }
             else {
                 gameOver()
@@ -74,10 +81,12 @@ class MainActivity : AppCompatActivity() {
 
         answerButton4.setOnClickListener {
             if (isAnswerCorrect(game, answerButton4)) {
-                proceed()
-            }
-            else if(isAnswerCorrect(game, answerButton4) && game.isFinalQuestion()) {
-                //send user to score screen
+                if (game.isFinalQuestion()) {
+                    score()
+                }
+                else {
+                    proceed()
+                }
             }
             else {
                 gameOver()
@@ -153,6 +162,7 @@ class MainActivity : AppCompatActivity() {
         if (requestCode == REQUEST_CODE_GO_ON) {
             game.didUserGoOn =
                 data?.getBooleanExtra(EXTRA_GO_ON, false) ?: false
+            checkIfUserGoesOn()
         }
     }
 
@@ -160,7 +170,22 @@ class MainActivity : AppCompatActivity() {
         val intent = ProceedActivity.newIntent(this@MainActivity,
             game.currentQuestionAmount, game.nextQuestionAmount)
         startActivityForResult(intent, REQUEST_CODE_GO_ON)
-        if (game.didUserGoOn) {
+    }
+
+    fun score() {
+        val intent = ScoreActivity.newIntent(this@MainActivity,
+            game.currentQuestionAmount)
+        startActivityForResult(intent, REQUEST_CODE_GO_ON)
+    }
+
+    fun checkIfUserGoesOn() {
+        if (!game.didUserGoOn) {
+            //reset game
+            game = Game()
+            initializeGame(game)
+            setText()
+        }
+        else {
             game.proceedToNextQuestion()
             setText()
             game.didUserGoOn = false

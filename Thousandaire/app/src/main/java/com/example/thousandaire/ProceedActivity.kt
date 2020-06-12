@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.TextView
+import com.example.thousandaire.ProceedActivity.Companion.newIntent
 import com.example.thousandaire.models.Game
 
 private const val EXTRA_CURRENT_AMOUNT = "com.example.thousandaire.current_amount"
@@ -18,6 +19,7 @@ class ProceedActivity : AppCompatActivity() {
     override fun onBackPressed(): Unit {
     }
 
+    private val REQUEST_CODE_PLAY_OVER = 0
     private lateinit var proceedTextView: TextView
     private lateinit var goOnButton: Button
     private lateinit var quitGameButton: Button
@@ -30,10 +32,11 @@ class ProceedActivity : AppCompatActivity() {
 
         currentAmount = intent.getIntExtra(EXTRA_CURRENT_AMOUNT, 0)
         nextAmount = intent.getIntExtra(EXTRA_NEXT_AMOUNT, 0)
+
         goOnButton = findViewById(R.id.go_on_button)
         quitGameButton = findViewById(R.id.quit_game_button_proceed)
-
         proceedTextView = findViewById(R.id.proceed_text_view)
+
         proceedTextView.setText("Correct! You have earned $$currentAmount. " +
                 "Would you care to try for $$nextAmount?")
 
@@ -43,7 +46,10 @@ class ProceedActivity : AppCompatActivity() {
         }
 
         quitGameButton.setOnClickListener {
-            //send user to result screen
+            val intent = ScoreActivity.newIntent(this@ProceedActivity, currentAmount)
+            startActivity(intent)
+            setGoOnResult(false)
+            finish()
         }
     }
 
