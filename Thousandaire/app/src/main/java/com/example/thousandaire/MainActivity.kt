@@ -12,7 +12,6 @@ import com.example.thousandaire.models.Game
 
 class MainActivity : AppCompatActivity() {
     private val REQUEST_CODE_GO_ON = 0
-    private val REQUEST_CODE_PLAY_OVER = 0
 
     private lateinit var game: Game
 

@@ -19,7 +19,6 @@ class ProceedActivity : AppCompatActivity() {
     override fun onBackPressed(): Unit {
     }
 
-    private val REQUEST_CODE_PLAY_OVER = 0
     private lateinit var proceedTextView: TextView
     private lateinit var goOnButton: Button
     private lateinit var quitGameButton: Button
